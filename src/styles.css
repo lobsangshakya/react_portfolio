@@ -15,7 +15,7 @@ body {
   min-height: 100vh;
 }
 
-/* Light Mode: Elegant Red Theme */
+/* Light Mode: */
 .light-mode {
   background: #fff5f7;
   color: #1a1a1a;
@@ -57,7 +57,7 @@ body {
   color: #ffffff;
 }
 
-/* Dark Mode: Vibrant Colorful Theme */
+/* Dark Mode*/
 .dark-mode {
   color: #f0f0f0;
 }
@@ -279,7 +279,7 @@ body {
   z-index: 1001;
 }
 
-/* Galaxy Warp Transition */
+/* Transition of shifts */
 .warp-transition {
   position: fixed;
   top: 0;
