@@ -101,7 +101,7 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
             interface.
           </p>
           <a
-            href="https://github.com/lobsangshakya/myob_xero_files"
+            href="https://github.com/lobsangshakya/myob-xero-files"
             className="btn"
           >
             View on GitHub
