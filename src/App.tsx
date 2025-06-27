@@ -6,6 +6,45 @@ interface SectionProps {
   setCurrentSection: (sectionId: string) => void;
 }
 
+const TerminalLoader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
+  const [text, setText] = useState("");
+  const fullText = "Loading...";
+
+  useEffect(() => {
+    let index = 0;
+    const typingSpeed = 100;
+    const timer = setInterval(() => {
+      if (index < fullText.length) {
+        setText(fullText.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(timer);
+        setTimeout(onComplete, 1000);
+      }
+    }, typingSpeed);
+    return () => clearInterval(timer);
+  }, [onComplete]);
+
+  return (
+    <div className="terminal-loader">
+      <div className="terminal-window">
+        <div className="terminal-header">
+          <span className="terminal-dot red"></span>
+          <span className="terminal-dot yellow"></span>
+          <span className="terminal-dot green"></span>
+        </div>
+        <div className="terminal-body">
+          <p className="terminal-text">
+            <span className="prompt"> </span>
+            {text}
+            <span className="cursor-blink">█</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Navbar: React.FC<SectionProps> = ({ setCurrentSection }) => (
   <nav className="navbar">
     <a href="#" onClick={() => setCurrentSection("hero")}>
@@ -170,6 +209,13 @@ const Contacts: React.FC = () => (
         >
           <i className="fa-brands fa-github fa"></i>
         </a>
+        <a
+          href="https://www.youtube.com/@Lotse04"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-youtube fa"></i>
+        </a>
       </div>
       <p>
         <i className="fa-solid fa-envelope fa"></i> Email:
@@ -226,7 +272,7 @@ export const My_app: React.FC<MyAppProps> = ({ children }) => {
 };
 
 export const App: React.FC = () => {
-  const [currentSection, setCurrentSection] = useState<string>("hero");
+  const [currentSection, setCurrentSection] = useState<string>("loading");
   const [showTransition, setShowTransition] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
@@ -239,78 +285,84 @@ export const App: React.FC = () => {
   };
 
   useEffect(() => {
-    const cursor = document.getElementById("cursor");
-    const trail = document.getElementById("trail");
-    if (cursor && trail) {
-      let trailX = 0,
-        trailY = 0;
-      const handleMouseMove = (e: MouseEvent) => {
-        cursor.style.left = e.clientX + "px";
-        cursor.style.top = e.clientY + "px";
-        trailX += (e.clientX - trailX) * 0.1;
-        trailY += (e.clientY - trailY) * 0.1;
-        trail.style.left = trailX + "px";
-        trail.style.top = trailY + "px";
-      };
-      document.addEventListener("mousemove", handleMouseMove);
-      return () => document.removeEventListener("mousemove", handleMouseMove);
+    if (currentSection !== "loading") {
+      const cursor = document.getElementById("cursor");
+      const trail = document.getElementById("trail");
+      if (cursor && trail) {
+        let trailX = 0,
+          trailY = 0;
+        const handleMouseMove = (e: MouseEvent) => {
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+          trailX += (e.clientX - trailX) * 0.1;
+          trailY += (e.clientY - trailY) * 0.1;
+          trail.style.left = trailX + "px";
+          trail.style.top = trailY + "px";
+        };
+        document.addEventListener("mousemove", handleMouseMove);
+        return () => document.removeEventListener("mousemove", handleMouseMove);
+      }
     }
-  }, []);
+  }, [currentSection]);
 
   return (
     <My_app>
-      <div className={isDarkMode ? "dark-mode" : "light-mode"}>
-        <div className="mode-toggle">
-          <button
-            type="button"
-            className="btn btn-light"
-            onClick={() => setIsDarkMode(false)}
-          >
-            Light
-          </button>
-          <button
-            type="button"
-            className="btn btn-dark"
-            onClick={() => setIsDarkMode(true)}
-          >
-            Dark
-          </button>
-        </div>
-        <div className="custom-cursor" id="cursor"></div>
-        <div className="cursor-trail" id="trail"></div>
-        <div className={`warp-transition ${showTransition ? "active" : ""}`}>
-          <div className="warp-core">
-            <div className="warp-glow"></div>
-            {[...Array(50)].map((_, i) => (
-              <div
-                className="star-particle"
-                key={i}
-                style={
-                  {
-                    "--star-delay": i,
-                    "--star-x": Math.random() * 2 - 1,
-                    "--star-y": Math.random() * 2 - 1,
-                  } as React.CSSProperties
-                }
-              ></div>
-            ))}
+      {currentSection === "loading" ? (
+        <TerminalLoader onComplete={() => setCurrentSection("hero")} />
+      ) : (
+        <div className={isDarkMode ? "dark-mode" : "light-mode"}>
+          <div className="mode-toggle">
+            <button
+              type="button"
+              className="btn btn-light"
+              onClick={() => setIsDarkMode(false)}
+            >
+              Dark
+            </button>
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={() => setIsDarkMode(true)}
+            >
+              Galaxy
+            </button>
           </div>
+          <div className="custom-cursor" id="cursor"></div>
+          <div className="cursor-trail" id="trail"></div>
+          <div className={`warp-transition ${showTransition ? "active" : ""}`}>
+            <div className="warp-core">
+              <div className="warp-glow"></div>
+              {[...Array(50)].map((_, i) => (
+                <div
+                  className="star-particle"
+                  key={i}
+                  style={
+                    {
+                      "--star-delay": i,
+                      "--star-x": Math.random() * 2 - 1,
+                      "--star-y": Math.random() * 2 - 1,
+                    } as React.CSSProperties
+                  }
+                ></div>
+              ))}
+            </div>
+          </div>
+          <Navbar setCurrentSection={handleSectionChange} />
+          {currentSection === "hero" && (
+            <Hero setCurrentSection={handleSectionChange} />
+          )}
+          {currentSection === "about" && (
+            <About setCurrentSection={handleSectionChange} />
+          )}
+          {currentSection === "projects" && (
+            <Projects setCurrentSection={handleSectionChange} />
+          )}
+          {currentSection === "contacts" && <Contacts />}
+          {currentSection === "hours" && (
+            <Hours setCurrentSection={handleSectionChange} />
+          )}
         </div>
-        <Navbar setCurrentSection={handleSectionChange} />
-        {currentSection === "hero" && (
-          <Hero setCurrentSection={handleSectionChange} />
-        )}
-        {currentSection === "about" && (
-          <About setCurrentSection={handleSectionChange} />
-        )}
-        {currentSection === "projects" && (
-          <Projects setCurrentSection={handleSectionChange} />
-        )}
-        {currentSection === "contacts" && <Contacts />}
-        {currentSection === "hours" && (
-          <Hours setCurrentSection={handleSectionChange} />
-        )}
-      </div>
+      )}
     </My_app>
   );
 };
