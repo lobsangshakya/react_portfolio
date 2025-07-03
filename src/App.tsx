@@ -129,7 +129,7 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
             design.
           </p>
           <a
-            href="https://github.com/lobsangshakya/Eco-Smart-Bin"
+            href="https://github.com/lobsangshakya/Eco_smart_bin"
             className="btn"
           >
             View on GitHub
@@ -143,7 +143,7 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
             interface.
           </p>
           <a
-            href="https://github.com/lobsangshakya/myob-xero-files"
+            href="https://github.com/lobsangshakya/Myob_to_Xero"
             className="btn"
           >
             View on GitHub
@@ -157,7 +157,7 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
             Finance Pro users.
           </p>
           <a
-            href="https://github.com/lobsangshakya/AI-Driven-FinancePro"
+            href="https://github.com/lobsangshakya/AI_driven_FinancePro"
             className="btn"
           >
             View on GitHub
