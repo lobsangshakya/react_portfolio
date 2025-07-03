@@ -91,9 +91,10 @@ const About: React.FC<SectionProps> = ({ setCurrentSection }) => (
         About <span>Me</span>
       </h2>
       <p>
-        I'm Lobsang Tsetan Shakya, a Data Science Intern at MMC Convert, Coordinator at
-        ANOVA Club, and a Full-Stack Web Developer passionate about data science
-        and innovative solutions.
+        I'm Lobsang Tsetan Shakya, a Full-Stack Web Developer, Data Science
+        Enthusiast, and Coordinator at ANOVA Club. Former Data Science Intern at
+        MMC Convert, passionate about building innovative, data-driven
+        solutions.
       </p>
       <a href="#" className="btn" onClick={() => setCurrentSection("projects")}>
         View My Projects
