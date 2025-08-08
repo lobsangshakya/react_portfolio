@@ -227,7 +227,7 @@ const Contacts: React.FC = () => (
       <p>
         <i className="fa-solid fa-briefcase fa"></i> Professional Experience (
         <a href="https://www.linkedin.com/in/lobsang-shakya">LinkedIn</a>):
-      </p>
+      </p> 
     </div>
     <div className="bubbles">
       {[...Array(5)].map((_, i) => (
