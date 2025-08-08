@@ -122,6 +122,20 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
       </p>
       <div className="project-grid">
         <div className="project-card">
+          <h3>AgriSathi</h3>
+          <p>
+            AgriSathi is a smart app that helps small and marginal farmers
+            with crop advice, weather updates, market prices, and government
+            schemes in simple regional languages.
+          </p>
+          <a
+            href="https://github.com/lobsangshakya/AgriSathi-app"
+            className="btn"
+          >
+            View on GitHub
+          </a>
+        </div>
+        <div className="project-card">
           <h3>Eco Smart bin</h3>
           <p>
             An AI-driven waste management website built with HTML, CSS, and
@@ -158,20 +172,6 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
           </p>
           <a
             href="https://github.com/lobsangshakya/AI_driven_FinancePro"
-            className="btn"
-          >
-            View on GitHub
-          </a>
-        </div>
-        <div className="project-card">
-          <h3>Nike Clone Website</h3>
-          <p>
-            A Nike-inspired clone website crafted with HTML, CSS, and
-            JavaScript, showcasing a clean, modern design with my unique
-            creative touch.
-          </p>
-          <a
-            href="https://github.com/lobsangshakya/Shoe-Clone-Website-FE-"
             className="btn"
           >
             View on GitHub
