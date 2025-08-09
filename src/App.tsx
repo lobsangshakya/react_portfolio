@@ -7,7 +7,7 @@ interface SectionProps {
 }
 
 const TerminalLoader: React.FC<{ onComplete: () => void }> = ({
-  onComplete,
+  onComplete, 
 }) => {
   const [text, setText] = useState("");
   const fullText = "$Initializing Portfolio...";
