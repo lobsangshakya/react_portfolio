@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import darkIcon from "./assets/dark.jpeg";
+import galaxyIcon from "./assets/GalaxyIcon.jpg";
 
 interface SectionProps {
   setCurrentSection: (sectionId: string) => void;
@@ -124,9 +126,9 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
         <div className="project-card">
           <h3>AgriSathi</h3>
           <p>
-            AgriSathi is a smart app that helps small and marginal farmers
-            with crop advice, weather updates, market prices, and government
-            schemes in simple regional languages.
+            AgriSathi is a smart app that helps small and marginal farmers with
+            crop advice, weather updates, market prices, and government schemes
+            in simple regional languages.
           </p>
           <a
             href="https://github.com/lobsangshakya/AgriSathi-app"
@@ -317,19 +319,20 @@ export const App: React.FC = () => {
           <div className="mode-toggle">
             <button
               type="button"
-              className="btn btn-light"
+              className="theme-btn"
               onClick={() => setIsDarkMode(false)}
             >
-              Dark
+              <img src={darkIcon} alt="Dark Mode" className="theme-icon" />
             </button>
             <button
               type="button"
-              className="btn btn-dark"
+              className="theme-btn"
               onClick={() => setIsDarkMode(true)}
             >
-              Galaxy
+              <img src={galaxyIcon} alt="Galaxy Mode" className="theme-icon" />
             </button>
           </div>
+
           <div className="custom-cursor" id="cursor"></div>
           <div className="cursor-trail" id="trail"></div>
           <div className={`warp-transition ${showTransition ? "active" : ""}`}>
