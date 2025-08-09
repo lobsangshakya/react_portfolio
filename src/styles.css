@@ -276,7 +276,7 @@ body {
   font-weight: 700;
   margin: 20px 0;
   background: linear-gradient(90deg, #ff4d6d, #ff8096);
-  /* -webkit-background-clip: text; */
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -285,7 +285,7 @@ body {
   font-weight: 700;
   margin-bottom: 20px;
   background: linear-gradient(90deg, #ff4d6d, #ff8096);
-  /* -webkit-background-clip: text; */
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
