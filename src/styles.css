@@ -1,10 +1,10 @@
-/* --- Global Styles & CSS Variables --- */
+/* GS  */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
 :root {
   --font-sans: 'Poppins', sans-serif;
 
-  /* Light Mode Palette */
+/* LIGHTMODE */
   --bg-light: #f8f7ff;
   --text-light: #12121c;
   --primary-light: #e63946;
@@ -13,7 +13,7 @@
   --glass-border-light: rgba(0, 0, 0, 0.1);
   --shadow-light: rgba(230, 57, 70, 0.1);
 
-  /* Dark Mode Palette */
+/* DARKMODE */
   --bg-dark: #0f101a;
   --text-dark: #e0e0e0;
   --primary-dark: #ff5d6c;
@@ -55,7 +55,7 @@ main {
   z-index: 2;
 }
 
-/* --- Dynamic Aurora Background --- */
+/* AURORA BG  */
 .aurora-background {
   position: fixed;
   top: 0;
@@ -92,9 +92,8 @@ main {
   100% { transform: scale(1.2) rotate(30deg); }
 }
 
-/* --- Terminal Loader --- */
+/* TERMINAL  */
 .terminal-loader {
-  /* [Your existing .terminal-loader styles here - they are good!] */
   position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #121212; display: flex; justify-content: center; align-items: center; z-index: 1000;
 }
 .terminal-window {
@@ -107,7 +106,7 @@ main {
 .cursor-blink { animation: blink 0.8s infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* --- Custom Cursor --- */
+/* CURSOR  */
 .custom-cursor {
   position: fixed;
   width: 24px;
@@ -124,7 +123,7 @@ body.dark-mode .custom-cursor { border-color: var(--primary-dark); }
 .custom-cursor:hover { transform: scale(1.5); }
 a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { transform: translate(-50%, -50%) scale(1.5); border-width: 1px; width: 32px; height: 32px; }
 
-/* Hide on touch devices */
+/* HIDDEN IN PHONES AND PADS  */
 @media (hover: none) {
   body { cursor: auto; }
   .custom-cursor { display: none; }
@@ -132,7 +131,7 @@ a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { transform: translate(-
 }
 
 
-/* --- Navbar --- */
+/* NAVBAR  */
 .navbar {
   position: fixed;
   top: 0;
@@ -186,7 +185,7 @@ a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { transform: translate(-
 .light-mode .hamburger { color: var(--text-light); }
 .dark-mode .hamburger { color: var(--text-dark); }
 
-/* --- Section Styling --- */
+/* ABOUT  */
 .section {
   min-height: 100vh;
   display: flex;
@@ -224,7 +223,7 @@ a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { transform: translate(-
 .light-mode .content p { color: #444; }
 .dark-mode .content p { color: #a9a9b3; }
 
-/* --- Buttons & Links --- */
+/* BUTTONS */
 .btn {
   padding: 0.8rem 2rem;
   border-radius: 50px;
@@ -248,7 +247,7 @@ a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { transform: translate(-
 }
 .btn i { margin-left: 0.5rem; }
 
-/* --- Project Grid --- */
+/* PROJECTS */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -297,7 +296,7 @@ a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { transform: translate(-
 .btn-link i { margin-left: 0.5rem; transition: transform 0.3s ease; }
 .btn-link:hover i { transform: translateX(4px); }
 
-/* --- Contact Section --- */
+/* CONTACTS */
 .contact-info { margin: 2rem 0; font-size: 1.1rem; }
 .contact-info i { margin-right: 0.75rem; }
 .light-mode .contact-info i { color: var(--primary-light); }
@@ -319,8 +318,6 @@ a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { transform: translate(-
 .light-mode .social-links a:hover { color: var(--primary-light); }
 .dark-mode .social-links a:hover { color: var(--primary-dark); }
 
-
-/* --- Mode Toggle --- */
 .mode-toggle {
   position: fixed;
   bottom: 2rem;
@@ -350,7 +347,6 @@ a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { transform: translate(-
     background-color: rgba(128, 128, 128, 0.2);
 }
 
-/* --- Warp Transition --- */
 .warp-transition {
   position: fixed;
   top: 0;
@@ -369,7 +365,6 @@ a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { transform: translate(-
 .light-mode .warp-transition { background-color: var(--bg-light); }
 .dark-mode .warp-transition { background-color: var(--bg-dark); }
 
-/* --- Responsive Design --- */
 @media (max-width: 768px) {
   .hamburger { display: block; }
   .navbar-links {
