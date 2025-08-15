@@ -1,18 +1,47 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import darkIcon from "./assets/dark.jpeg";
-import galaxyIcon from "./assets/GalaxyIcon.jpg";
 
+// --- Data Constants (Easy to Update!) ---
+const projectData = [
+  {
+    title: "AgriSathi",
+    description: "A smart app helping farmers with crop advice, weather updates, and market prices in regional languages.",
+    repoUrl: "https://github.com/lobsangshakya/AgriSathi-app",
+  },
+  {
+    title: "Eco Smart Bin",
+    description: "An AI-driven waste management website promoting cleanliness with smart sorting and an interactive design.",
+    repoUrl: "https://github.com/lobsangshakya/Eco_smart_bin",
+  },
+  {
+    title: "Myob to Xero Conversion",
+    description: "A streamlined conversion tool for MMC Company, enabling live file conversions with a user-friendly interface.",
+    repoUrl: "https://github.com/lobsangshakya/Myob_to_Xero",
+  },
+  {
+    title: "AI-driven FinancePro",
+    description: "A stock prediction website using AI to deliver clean, actionable investment insights for Finance Pro users.",
+    repoUrl: "https://github.com/lobsangshakya/AI_driven_FinancePro",
+  },
+];
+
+const socialLinks = [
+  { icon: "fa-linkedin", url: "https://www.linkedin.com/in/lobsang-shakya" },
+  { icon: "fa-github", url: "https://github.com/lobsangshakya" },
+  { icon: "fa-youtube", url: "https://www.youtube.com/@Lotse04" },
+];
+
+// --- Type Definitions ---
 interface SectionProps {
   setCurrentSection: (sectionId: string) => void;
 }
 
-const TerminalLoader: React.FC<{ onComplete: () => void }> = ({
-  onComplete,
-}) => {
+// --- Components ---
+
+const TerminalLoader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [text, setText] = useState("");
-  const fullText = "$Initializing Portfolio...";
+  const fullText = "$ Initializing Portfolio...";
 
   useEffect(() => {
     let index = 0;
@@ -39,7 +68,6 @@ const TerminalLoader: React.FC<{ onComplete: () => void }> = ({
         </div>
         <div className="terminal-body">
           <p className="terminal-text">
-            <span className="prompt"> </span>
             {text}
             <span className="cursor-blink">█</span>
           </p>
@@ -49,327 +77,188 @@ const TerminalLoader: React.FC<{ onComplete: () => void }> = ({
   );
 };
 
-const Navbar: React.FC<SectionProps> = ({ setCurrentSection }) => (
-  <nav className="navbar">
-    <a href="#" onClick={() => setCurrentSection("hero")}>
-      Home
-    </a>
-    <a href="#" onClick={() => setCurrentSection("about")}>
-      About
-    </a>
-    <a href="#" onClick={() => setCurrentSection("projects")}>
-      Projects
-    </a>
-    <a href="#" onClick={() => setCurrentSection("contacts")}>
-      Contacts
-    </a>
-    <a href="#" onClick={() => setCurrentSection("hours")}>
-      Working Hours
-    </a>
-  </nav>
-);
+const Navbar: React.FC<SectionProps> = ({ setCurrentSection }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleNavClick = (sectionId: string) => {
+    setCurrentSection(sectionId);
+    setIsOpen(false);
+  };
+
+  return (
+    <nav className="navbar">
+      <a href="#" className="nav-logo" onClick={() => handleNavClick("hero")}>
+        Lobsang S.
+      </a>
+      <div className={`navbar-links ${isOpen ? "active" : ""}`}>
+        <a href="#" onClick={() => handleNavClick("hero")}>Home</a>
+        <a href="#" onClick={() => handleNavClick("about")}>About</a>
+        <a href="#" onClick={() => handleNavClick("projects")}>Projects</a>
+        <a href="#" onClick={() => handleNavClick("contacts")}>Contact</a>
+      </div>
+      <button className="hamburger" onClick={() => setIsOpen(!isOpen)}>
+        <i className={isOpen ? "fas fa-times" : "fas fa-bars"}></i>
+      </button>
+    </nav>
+  );
+};
 
 const Hero: React.FC<SectionProps> = ({ setCurrentSection }) => (
-  <div className="section hero" id="hero">
+  <section className="section" id="hero">
     <div className="content">
-      <h1>
-        Welcome to <span>Lobsang's Portfolio</span>
-      </h1>
-      <p>Explore my world of Data Science, creativity, and innovation!</p>
-      <a href="#" className="btn" onClick={() => setCurrentSection("about")}>
-        Discover More
-      </a>
+      <h1>Welcome to <span>Lobsang's Portfolio</span></h1>
+      <p>Exploring the intersection of Data Science, creativity, and innovation.</p>
+      <button className="btn" onClick={() => setCurrentSection("about")}>
+        Discover More <i className="fas fa-arrow-right"></i>
+      </button>
     </div>
-    <div className="bubbles">
-      {[...Array(5)].map((_, i) => (
-        <div className="bubble" key={i}></div>
-      ))}
-    </div>
-  </div>
+  </section>
 );
 
 const About: React.FC<SectionProps> = ({ setCurrentSection }) => (
-  <div className="section" id="about">
+  <section className="section" id="about">
     <div className="content">
-      <h2>
-        About <span>Me</span>
-      </h2>
+      <h2>About <span>Me</span></h2>
       <p>
-        I'm Lobsang Tsetan Shakya, a Full-Stack Web Developer, Data Science
-        Enthusiast, and Coordinator at ANOVA Club. Former Data Science Intern at
-        MMC Convert, passionate about building innovative, data-driven
-        solutions.
+        I'm Lobsang Tsetan Shakya, a Full-Stack Developer and Data Science
+        Enthusiast. With experience as a Data Science Intern at MMC Convert and Coordinator at ANOVA Club, I am passionate about building innovative, data-driven solutions that make an impact.
       </p>
-      <a href="#" className="btn" onClick={() => setCurrentSection("projects")}>
-        View My Projects
-      </a>
+      <button className="btn" onClick={() => setCurrentSection("projects")}>
+        View My Work
+      </button>
     </div>
-    <div className="bubbles">
-      {[...Array(5)].map((_, i) => (
-        <div className="bubble" key={i}></div>
-      ))}
-    </div>
-  </div>
+  </section>
 );
 
 const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
-  <div className="section" id="projects">
+  <section className="section" id="projects">
     <div className="content">
-      <h2>
-        My <span>Projects</span>
-      </h2>
-      <p>
-        Check out my work on{" "}
-        <a href="https://github.com/lobsangshakya">GitHub</a>:
-      </p>
+      <h2>My <span>Projects</span></h2>
+      <p>Here are a few things I've been working on. For more, check out my <a href="https://github.com/lobsangshakya" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
       <div className="project-grid">
-        <div className="project-card">
-          <h3>AgriSathi</h3>
-          <p>
-            AgriSathi is a smart app that helps small and marginal farmers with
-            crop advice, weather updates, market prices, and government schemes
-            in simple regional languages.
-          </p>
-          <a
-            href="https://github.com/lobsangshakya/AgriSathi-app"
-            className="btn"
-          >
-            View on GitHub
-          </a>
-        </div>
-        <div className="project-card">
-          <h3>Eco Smart bin</h3>
-          <p>
-            An AI-driven waste management website built with HTML, CSS, and
-            JavaScript, promoting cleanliness with smart sorting and interactive
-            design.
-          </p>
-          <a
-            href="https://github.com/lobsangshakya/Eco_smart_bin"
-            className="btn"
-          >
-            View on GitHub
-          </a>
-        </div>
-        <div className="project-card">
-          <h3>Myob to Xero Conversion</h3>
-          <p>
-            A streamlined MYOB to Xero conversion website for MMC Company,
-            enabling live file conversions with a clean, user-friendly
-            interface.
-          </p>
-          <a
-            href="https://github.com/lobsangshakya/Myob_to_Xero"
-            className="btn"
-          >
-            View on GitHub
-          </a>
-        </div>
-        <div className="project-card">
-          <h3>AI-driven FinancePro</h3>
-          <p>
-            An AI-driven stock prediction website built with HTML, CSS, and
-            JavaScript, delivering clean, actionable investment insights for
-            Finance Pro users.
-          </p>
-          <a
-            href="https://github.com/lobsangshakya/AI_driven_FinancePro"
-            className="btn"
-          >
-            View on GitHub
-          </a>
-        </div>
+        {projectData.map((project, index) => (
+          <div className="project-card" key={index}>
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+            <a href={project.repoUrl} className="btn-link" target="_blank" rel="noopener noreferrer">
+              View on GitHub <i className="fa-brands fa-github"></i>
+            </a>
+          </div>
+        ))}
       </div>
-      <a href="#" className="btn" onClick={() => setCurrentSection("hours")}>
-        Check My Availability
-      </a>
+      <button className="btn" onClick={() => setCurrentSection("contacts")}>
+        Let's Connect
+      </button>
     </div>
-    <div className="bubbles">
-      {[...Array(5)].map((_, i) => (
-        <div className="bubble" key={i}></div>
-      ))}
-    </div>
-  </div>
+  </section>
 );
 
-const Contacts: React.FC = () => (
-  <div className="section" id="contacts">
+const Contacts: React.FC<SectionProps> = ({ setCurrentSection }) => (
+  <section className="section" id="contacts">
     <div className="content">
-      <h2>
-        Contact <span>Me</span>
-      </h2>
-      <p>Let's collaborate on something amazing!</p>
+      <h2>Get In <span>Touch</span></h2>
+      <p>I'm currently available for freelance work and open to discussing new projects. Let's create something amazing together!</p>
+      <div className="contact-info">
+        <p><i className="fa-solid fa-envelope"></i> lobsangshakya5@gmail.com</p>
+      </div>
       <div className="social-links">
-        <a
-          href="https://www.linkedin.com/in/lobsang-shakya"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fa-brands fa-linkedin fa"></i>
-        </a>
-        <a
-          href="https://github.com/lobsangshakya"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fa-brands fa-github fa"></i>
-        </a>
-        <a
-          href="https://www.youtube.com/@Lotse04"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fa-brands fa-youtube fa"></i>
-        </a>
+        {socialLinks.map((link, index) => (
+          <a key={index} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.icon}>
+            <i className={`fa-brands ${link.icon}`}></i>
+          </a>
+        ))}
       </div>
-      <p>
-        <i className="fa-solid fa-envelope fa"></i> Email:
-        lobsangshakya5@gmail.com
-      </p>
-      <p>
-        <i className="fa-solid fa-briefcase fa"></i> Professional Experience (
-        <a href="https://www.linkedin.com/in/lobsang-shakya">LinkedIn</a>):
-      </p>
-    </div>
-    <div className="bubbles">
-      {[...Array(5)].map((_, i) => (
-        <div className="bubble" key={i}></div>
-      ))}
-    </div>
-  </div>
-);
-
-const Hours: React.FC<SectionProps> = ({ setCurrentSection }) => (
-  <div className="section" id="hours">
-    <div className="content">
-      <h2>
-        Working <span>Hours</span>
-      </h2>
-      <p>
-        Ready to collaborate on innovative projects:
-        <br />
-        Monday - Friday: 8 PM - 10 PM
-        <br />
-        Saturday: 8 PM - 9 PM
-        <br />
-        Sunday: Open for urgent queries
-        <br />
-        Reach out via email or social media!
-      </p>
-      <a href="#" className="btn" onClick={() => setCurrentSection("hero")}>
+       <button className="btn" onClick={() => setCurrentSection("hero")}>
         Back to Home
-      </a>
+      </button>
     </div>
-    <div className="bubbles">
-      {[...Array(5)].map((_, i) => (
-        <div className="bubble" key={i}></div>
-      ))}
-    </div>
-  </div>
+  </section>
 );
 
-interface MyAppProps {
-  children: React.ReactNode;
-}
+// --- Theme Toggle Icons (Self-Contained SVGs) ---
+const LightModeIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 011.06 0l1.59 1.59a.75.75 0 11-1.06 1.06l-1.59-1.59a.75.75 0 010-1.06zM12 17.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 17.25zM6.106 18.894a.75.75 0 010-1.06l1.59-1.59a.75.75 0 111.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM4.5 12a.75.75 0 01-.75.75H1.5a.75.75 0 010-1.5h2.25A.75.75 0 014.5 12zM6.106 5.106a.75.75 0 011.06 0l1.591 1.59a.75.75 0 01-1.06 1.06L6.106 6.166a.75.75 0 010-1.06z" />
+    </svg>
+);
 
-export const My_app: React.FC<MyAppProps> = ({ children }) => {
-  return <div className="my-app">{children}</div>;
-};
+const DarkModeIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.463-.949a.75.75 0 01.819.162l.805.806a.75.75 0 01-.162.819A10.5 10.5 0 119.528 1.718zM16.5 9a.75.75 0 000-1.5h-3a.75.75 0 000 1.5h3z" clipRule="evenodd" />
+    </svg>
+);
 
+// --- Main App Component ---
 export const App: React.FC = () => {
   const [currentSection, setCurrentSection] = useState<string>("loading");
   const [showTransition, setShowTransition] = useState<boolean>(false);
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Default to dark mode
 
   const handleSectionChange = (sectionId: string) => {
+    if (sectionId === currentSection) return;
     setShowTransition(true);
     setTimeout(() => {
       setCurrentSection(sectionId);
       setShowTransition(false);
-    }, 1000);
+    }, 800); // Shorter transition time
   };
 
   useEffect(() => {
-    if (currentSection !== "loading") {
-      const cursor = document.getElementById("cursor");
-      const trail = document.getElementById("trail");
-      if (cursor && trail) {
-        let trailX = 0,
-          trailY = 0;
-        const handleMouseMove = (e: MouseEvent) => {
-          cursor.style.left = e.clientX + "px";
-          cursor.style.top = e.clientY + "px";
-          trailX += (e.clientX - trailX) * 0.1;
-          trailY += (e.clientY - trailY) * 0.1;
-          trail.style.left = trailX + "px";
-          trail.style.top = trailY + "px";
-        };
-        document.addEventListener("mousemove", handleMouseMove);
-        return () => document.removeEventListener("mousemove", handleMouseMove);
-      }
-    }
+    document.body.className = isDarkMode ? "dark-mode" : "light-mode";
+  }, [isDarkMode]);
+
+  useEffect(() => {
+    if (currentSection === "loading") return;
+
+    const cursor = document.getElementById("cursor");
+    if (!cursor) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    return () => document.removeEventListener("mousemove", handleMouseMove);
   }, [currentSection]);
+  
+  const renderSection = () => {
+    switch(currentSection) {
+        case 'hero': return <Hero setCurrentSection={handleSectionChange} />;
+        case 'about': return <About setCurrentSection={handleSectionChange} />;
+        case 'projects': return <Projects setCurrentSection={handleSectionChange} />;
+        case 'contacts': return <Contacts setCurrentSection={handleSectionChange} />;
+        default: return <Hero setCurrentSection={handleSectionChange} />;
+    }
+  };
 
   return (
-    <My_app>
+    <>
       {currentSection === "loading" ? (
         <TerminalLoader onComplete={() => setCurrentSection("hero")} />
       ) : (
-        <div className={isDarkMode ? "dark-mode" : "light-mode"}>
-          <div className="mode-toggle">
-            <button
-              type="button"
-              className="theme-btn"
-              onClick={() => setIsDarkMode(false)}
-            >
-              <img src={darkIcon} alt="Dark Mode" className="theme-icon" />
-            </button>
-            <button
-              type="button"
-              className="theme-btn"
-              onClick={() => setIsDarkMode(true)}
-            >
-              <img src={galaxyIcon} alt="Galaxy Mode" className="theme-icon" />
-            </button>
-          </div>
-
-          <div className="custom-cursor" id="cursor"></div>
-          <div className="cursor-trail" id="trail"></div>
-          <div className={`warp-transition ${showTransition ? "active" : ""}`}>
-            <div className="warp-core">
-              <div className="warp-glow"></div>
-              {[...Array(50)].map((_, i) => (
-                <div
-                  className="star-particle"
-                  key={i}
-                  style={
-                    {
-                      "--star-delay": i,
-                      "--star-x": Math.random() * 2 - 1,
-                      "--star-y": Math.random() * 2 - 1,
-                    } as React.CSSProperties
-                  }
-                ></div>
-              ))}
-            </div>
-          </div>
+        <>
+          <div className="aurora-background"></div>
+          <div id="cursor" className="custom-cursor"></div>
+          <div className={`warp-transition ${showTransition ? "active" : ""}`}></div>
+          
           <Navbar setCurrentSection={handleSectionChange} />
-          {currentSection === "hero" && (
-            <Hero setCurrentSection={handleSectionChange} />
-          )}
-          {currentSection === "about" && (
-            <About setCurrentSection={handleSectionChange} />
-          )}
-          {currentSection === "projects" && (
-            <Projects setCurrentSection={handleSectionChange} />
-          )}
-          {currentSection === "contacts" && <Contacts />}
-          {currentSection === "hours" && (
-            <Hours setCurrentSection={handleSectionChange} />
-          )}
-        </div>
+          
+          <main>
+            {renderSection()}
+          </main>
+          
+          <div className="mode-toggle">
+            <button onClick={() => setIsDarkMode(false)} aria-label="Switch to light mode">
+              <LightModeIcon />
+            </button>
+            <button onClick={() => setIsDarkMode(true)} aria-label="Switch to dark mode">
+              <DarkModeIcon />
+            </button>
+          </div>
+        </>
       )}
-    </My_app>
+    </>
   );
 };
 
