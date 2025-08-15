@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-// --- Data Constants (Easy to Update!) ---
+// PROJECTS 
 const projectData = [
   {
     title: "AgriSathi",
@@ -32,12 +32,11 @@ const socialLinks = [
   { icon: "fa-youtube", url: "https://www.youtube.com/@Lotse04" },
 ];
 
-// --- Type Definitions ---
 interface SectionProps {
   setCurrentSection: (sectionId: string) => void;
 }
 
-// --- Components ---
+// BODY 
 
 const TerminalLoader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [text, setText] = useState("");
@@ -175,7 +174,7 @@ const Contacts: React.FC<SectionProps> = ({ setCurrentSection }) => (
   </section>
 );
 
-// --- Theme Toggle Icons (Self-Contained SVGs) ---
+// ICONS FOR THEME 
 const LightModeIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
         <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.59a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 011.06 0l1.59 1.59a.75.75 0 11-1.06 1.06l-1.59-1.59a.75.75 0 010-1.06zM12 17.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 17.25zM6.106 18.894a.75.75 0 010-1.06l1.59-1.59a.75.75 0 111.06 1.06l-1.59 1.59a.75.75 0 01-1.06 0zM4.5 12a.75.75 0 01-.75.75H1.5a.75.75 0 010-1.5h2.25A.75.75 0 014.5 12zM6.106 5.106a.75.75 0 011.06 0l1.591 1.59a.75.75 0 01-1.06 1.06L6.106 6.166a.75.75 0 010-1.06z" />
@@ -188,11 +187,11 @@ const DarkModeIcon = () => (
     </svg>
 );
 
-// --- Main App Component ---
+// BODY 
 export const App: React.FC = () => {
   const [currentSection, setCurrentSection] = useState<string>("loading");
   const [showTransition, setShowTransition] = useState<boolean>(false);
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Default to dark mode
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
 
   const handleSectionChange = (sectionId: string) => {
     if (sectionId === currentSection) return;
@@ -200,7 +199,7 @@ export const App: React.FC = () => {
     setTimeout(() => {
       setCurrentSection(sectionId);
       setShowTransition(false);
-    }, 800); // Shorter transition time
+    }, 800);
   };
 
   useEffect(() => {
