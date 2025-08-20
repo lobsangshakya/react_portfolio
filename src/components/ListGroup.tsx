@@ -9,7 +9,6 @@ interface Props {
 } 
 
 function ListGroup({ items, heading, onSelectItem}: Props) {
-  // Basically, -1 is the page reloadation when none of the item is selected
   const [selectedItem, setSelectedItem] = useState(-1)
   return (
     <>
