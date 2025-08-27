@@ -6,7 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 const projectData = [
   {
     title: "AgriSathi",
-    description: "A smart app helping farmers with crop advice, weather updates, and market prices in regional languages.",
+    description: "A smart app helping farmers with crop advice, weather updates , and market prices in regional languages.",
     repoUrl: "https://github.com/lobsangshakya/AgriSathi-app",
   },
   {
