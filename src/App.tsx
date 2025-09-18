@@ -1,5 +1,6 @@
 import "./styles.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { useState, useEffect } from "react";
 
 // PROJECTS 
 const projectData = [
