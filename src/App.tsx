@@ -3,7 +3,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState, useEffect } from "react";
 
 // PROJECTS 
-const projectData = [
+const projectData = 
   {
     title: "AgriSathi",
     description: "A smart app helping farmers with crop advice, weather updates , and market prices in regional languages.",
