@@ -21,7 +21,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    "types": ["node"]  // ✅ This line enables process.env and other Node globals
+    "types": ["node"]
   },
   "include": ["vite.config.ts"]
 }
