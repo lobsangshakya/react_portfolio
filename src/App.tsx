@@ -20,9 +20,9 @@ const projectData = [
     repoUrl: "https://github.com/lobsangshakya/Myob_to_Xero",
   },
   {
-    title: "AI-driven FinancePro",
-    description: "A stock prediction website using AI to deliver clean, actionable investment insights for Finance Pro users.",
-    repoUrl: "https://github.com/lobsangshakya/AI_driven_FinancePro",
+    title: "Project Zinova",
+    description: "An innovative platform that tackles food waste and hunger using AI, blockchain, and data-driven insights. By connecting farmers, restaurants, and NGOs in real time, it ensures surplus food is efficiently redistributed to communities in need. With smart AI matching, blockchain transparency, Azure Maps logistics, and Power BI dashboards, Zinova brings sustainability and social impact together.",
+    repoUrl: "https://github.com/lobsangshakya/Project-Zinova",
   },
 ];
 
