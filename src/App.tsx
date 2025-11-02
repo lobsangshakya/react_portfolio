@@ -21,7 +21,7 @@ const projectData = [
   },
   {
     title: "Project Zinova",
-    description: "An innovative platform that tackles food waste and hunger using AI, blockchain, and data-driven insights. By connecting farmers, restaurants, and NGOs in real time, it ensures surplus food is efficiently redistributed to communities in need. With smart AI matching, blockchain transparency, Azure Maps logistics, and Power BI dashboards, Zinova brings sustainability and social impact together.",
+    description: "Zinova uses AI and blockchain to connect farmers, restaurants, and NGOs, redistributing surplus food efficiently to fight waste and hunger.",
     repoUrl: "https://github.com/lobsangshakya/Project-Zinova",
   },
 ];
