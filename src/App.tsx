@@ -1,6 +1,7 @@
 import "./styles.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // PROJECTS 
 const projectData = [
@@ -79,99 +80,248 @@ const TerminalLoader: React.FC<{ onComplete: () => void }> = ({ onComplete }) =>
 const Navbar: React.FC<SectionProps> = ({ setCurrentSection }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleNavClick = (sectionId: string) => {
+  const handleNavClick = (sectionId: string, e: React.MouseEvent) => {
+    e.preventDefault();
     setCurrentSection(sectionId);
     setIsOpen(false);
+    // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <nav className="navbar">
-      <a href="#" className="nav-logo" onClick={() => handleNavClick("hero")}>
+    <motion.nav 
+      className="navbar"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <a href="#" className="nav-logo" onClick={(e) => handleNavClick("hero", e)}>
         Lobsang S.
       </a>
       <div className={`navbar-links ${isOpen ? "active" : ""}`}>
-        <a href="#" onClick={() => handleNavClick("hero")}>Home</a>
-        <a href="#" onClick={() => handleNavClick("about")}>About</a>
-        <a href="#" onClick={() => handleNavClick("projects")}>Projects</a>
-        <a href="#" onClick={() => handleNavClick("contacts")}>Contact</a>
+        <a href="#" onClick={(e) => handleNavClick("hero", e)}>Home</a>
+        <a href="#" onClick={(e) => handleNavClick("about", e)}>About</a>
+        <a href="#" onClick={(e) => handleNavClick("projects", e)}>Projects</a>
+        <a href="#" onClick={(e) => handleNavClick("contacts", e)}>Contact</a>
       </div>
-      <button className="hamburger" onClick={() => setIsOpen(!isOpen)}>
+      <button className="hamburger" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle navigation menu">
         <i className={isOpen ? "fas fa-times" : "fas fa-bars"}></i>
       </button>
-    </nav>
+    </motion.nav>
   );
 };
 
 const Hero: React.FC<SectionProps> = ({ setCurrentSection }) => (
-  <section className="section" id="hero">
+  <motion.section 
+    className="section" 
+    id="hero"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+  >
     <div className="content">
-      <h1>Welcome to <span>Lobsang's Portfolio</span></h1>
-      <p>Exploring the intersection of Data Science, creativity, and innovation.</p>
-      <button className="btn" onClick={() => setCurrentSection("about")}>
+      <motion.h1
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
+        Welcome to <span>Lobsang's Portfolio</span>
+      </motion.h1>
+      <motion.p
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+      >
+        Exploring the intersection of Data Science, creativity, and innovation.
+      </motion.p>
+      <motion.button 
+        className="btn" 
+        onClick={() => setCurrentSection("about")}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
         Discover More <i className="fas fa-arrow-right"></i>
-      </button>
+      </motion.button>
     </div>
-  </section>
+  </motion.section>
 );
 
 const About: React.FC<SectionProps> = ({ setCurrentSection }) => (
-  <section className="section" id="about">
+  <motion.section 
+    className="section" 
+    id="about"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    exit={{ opacity: 0 }}
+  >
     <div className="content">
-      <h2>About <span>Me</span></h2>
-      <p>
+      <motion.h2
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
+        About <span>Me</span>
+      </motion.h2>
+      <motion.p
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+      >
         I'm Lobsang Tsetan Shakya, a Full-Stack Developer and Data Science
         Enthusiast. With experience as a Data Science Intern at MMC Convert and Coordinator at ANOVA Club, I am passionate about building innovative, data-driven solutions that make an impact.
-      </p>
-      <button className="btn" onClick={() => setCurrentSection("projects")}>
+      </motion.p>
+      <motion.button 
+        className="btn" 
+        onClick={() => setCurrentSection("projects")}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
         View My Work
-      </button>
+      </motion.button>
     </div>
-  </section>
+  </motion.section>
 );
 
 const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
-  <section className="section" id="projects">
+  <motion.section 
+    className="section" 
+    id="projects"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    exit={{ opacity: 0 }}
+  >
     <div className="content">
-      <h2>My <span>Projects</span></h2>
-      <p>Here are a few things I've been working on. For more, check out my <a href="https://github.com/lobsangshakya" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
-      <div className="project-grid">
+      <motion.h2
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
+        My <span>Projects</span>
+      </motion.h2>
+      <motion.p
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+      >
+        Here are a few things I've been working on. For more, check out my <a href="https://github.com/lobsangshakya" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </motion.p>
+      <motion.div 
+        className="project-grid"
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
         {projectData.map((project, index) => (
-          <div className="project-card" key={index}>
+          <motion.div 
+            className="project-card" 
+            key={index}
+            whileHover={{ y: -10 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <h3>{project.title}</h3>
             <p>{project.description}</p>
-            <a href={project.repoUrl} className="btn-link" target="_blank" rel="noopener noreferrer">
+            <motion.a 
+              href={project.repoUrl} 
+              className="btn-link" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.95 }}
+            >
               View on GitHub <i className="fa-brands fa-github"></i>
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         ))}
-      </div>
-      <button className="btn" onClick={() => setCurrentSection("contacts")}>
+      </motion.div>
+      <motion.button 
+        className="btn" 
+        onClick={() => setCurrentSection("contacts")}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+      >
         Let's Connect
-      </button>
+      </motion.button>
     </div>
-  </section>
+  </motion.section>
 );
 
 const Contacts: React.FC<SectionProps> = ({ setCurrentSection }) => (
-  <section className="section" id="contacts">
+  <motion.section 
+    className="section" 
+    id="contacts"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    exit={{ opacity: 0 }}
+  >
     <div className="content">
-      <h2>Get In <span>Touch</span></h2>
-      <p>I'm currently available for freelance work and open to discussing new projects. Let's create something amazing together!</p>
-      <div className="contact-info">
+      <motion.h2
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
+        Get In <span>Touch</span>
+      </motion.h2>
+      <motion.p
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4, duration: 0.6 }}
+      >
+        I'm currently available for freelance work and open to discussing new projects. Let's create something amazing together!
+      </motion.p>
+      <motion.div 
+        className="contact-info"
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
         <p><i className="fa-solid fa-envelope"></i> lobsangshakya5@gmail.com</p>
-      </div>
-      <div className="social-links">
+      </motion.div>
+      <motion.div 
+        className="social-links"
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.7, duration: 0.6 }}
+      >
         {socialLinks.map((link, index) => (
-          <a key={index} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.icon}>
+          <motion.a 
+            key={index} 
+            href={link.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label={link.icon}
+            whileHover={{ y: -5, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
             <i className={`fa-brands ${link.icon}`}></i>
-          </a>
+          </motion.a>
         ))}
-      </div>
-       <button className="btn" onClick={() => setCurrentSection("hero")}>
+      </motion.div>
+       <motion.button 
+        className="btn" 
+        onClick={() => setCurrentSection("hero")}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+      >
         Back to Home
-      </button>
+      </motion.button>
     </div>
-  </section>
+  </motion.section>
 );
 
 // ICONS FOR THEME 
@@ -244,17 +394,24 @@ export const App: React.FC = () => {
           <Navbar setCurrentSection={handleSectionChange} />
           
           <main>
-            {renderSection()}
+            <AnimatePresence mode="wait">
+              {renderSection()}
+            </AnimatePresence>
           </main>
           
-          <div className="mode-toggle">
+          <motion.div 
+            className="mode-toggle"
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
             <button onClick={() => setIsDarkMode(false)} aria-label="Switch to light mode">
               <LightModeIcon />
             </button>
             <button onClick={() => setIsDarkMode(true)} aria-label="Switch to dark mode">
               <DarkModeIcon />
             </button>
-          </div>
+          </motion.div>
         </>
       )}
     </>
