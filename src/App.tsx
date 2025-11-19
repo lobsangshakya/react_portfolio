@@ -356,7 +356,110 @@ export const App: React.FC = () => {
     document.body.className = isDarkMode ? "dark-mode" : "light-mode";
   }, [isDarkMode]);
 
-  // Custom cursor effect removed to use normal browser cursor
+  useEffect(() => {
+    if (currentSection === "loading") return;
+
+    const cursorDot = document.getElementById("cursor-dot");
+    const cursorOutline = document.getElementById("cursor-outline");
+    const cursorTrail = document.getElementById("cursor-trail");
+    
+    if (!cursorDot || !cursorOutline || !cursorTrail) return;
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let outlineX = 0;
+    let outlineY = 0;
+    let trailX = 0;
+    let trailY = 0;
+    
+    let angle = 0;
+    const trailElements: HTMLDivElement[] = [];
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+    
+    const animateCursor = () => {
+      // Move dot to mouse position
+      cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+      
+      // Smooth follow for outline
+      outlineX += (mouseX - outlineX) / 4;
+      outlineY += (mouseY - outlineY) / 4;
+      cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) rotate(${angle}deg)`;
+      
+      // Slower follow for trail
+      trailX += (mouseX - trailX) / 8;
+      trailY += (mouseY - trailY) / 8;
+      cursorTrail.style.transform = `translate3d(${trailX}px, ${trailY}px, 0)`;
+      
+      // Rotate animation
+      angle += 1;
+      
+      // Create trail effect
+      if (Math.random() > 0.7) {
+        const trailElement = document.createElement('div');
+        trailElement.className = 'cursor-trail-element';
+        trailElement.style.left = `${mouseX}px`;
+        trailElement.style.top = `${mouseY}px`;
+        document.body.appendChild(trailElement);
+        
+        // Remove trail element after animation
+        setTimeout(() => {
+          if (trailElement.parentNode) {
+            trailElement.parentNode.removeChild(trailElement);
+          }
+        }, 500);
+        
+        trailElements.push(trailElement);
+      }
+      
+      requestAnimationFrame(animateCursor);
+    };
+    
+    // Start animation
+    const animationFrame = requestAnimationFrame(animateCursor);
+    
+    // Add event listener
+    document.addEventListener("mousemove", handleMouseMove);
+    
+    // Handle hover effects
+    const handleMouseOver = (e: Event) => {
+      if (e.target instanceof HTMLElement) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+          cursorDot.classList.add('cursor-hover');
+          cursorOutline.classList.add('cursor-hover');
+        }
+      }
+    };
+    
+    const handleMouseOut = (e: Event) => {
+      if (e.target instanceof HTMLElement) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+          cursorDot.classList.remove('cursor-hover');
+          cursorOutline.classList.remove('cursor-hover');
+        }
+      }
+    };
+    
+    document.addEventListener('mouseover', handleMouseOver);
+    document.addEventListener('mouseout', handleMouseOut);
+    
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener('mouseover', handleMouseOver);
+      document.removeEventListener('mouseout', handleMouseOut);
+      cancelAnimationFrame(animationFrame);
+      
+      // Clean up trail elements
+      trailElements.forEach(element => {
+        if (element.parentNode) {
+          element.parentNode.removeChild(element);
+        }
+      });
+    };
+  }, [currentSection]);
   
   const renderSection = () => {
     switch(currentSection) {
@@ -375,6 +478,9 @@ export const App: React.FC = () => {
       ) : (
         <>
           <div className="aurora-background"></div>
+          <div id="cursor-dot"></div>
+          <div id="cursor-outline"></div>
+          <div id="cursor-trail"></div>
           <div className={`warp-transition ${showTransition ? "active" : ""}`}></div>
           
           <Navbar setCurrentSection={handleSectionChange} />
