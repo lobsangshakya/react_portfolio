@@ -356,20 +356,7 @@ export const App: React.FC = () => {
     document.body.className = isDarkMode ? "dark-mode" : "light-mode";
   }, [isDarkMode]);
 
-  useEffect(() => {
-    if (currentSection === "loading") return;
-
-    const cursor = document.getElementById("cursor");
-    if (!cursor) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => document.removeEventListener("mousemove", handleMouseMove);
-  }, [currentSection]);
+  // Custom cursor effect removed to use normal browser cursor
   
   const renderSection = () => {
     switch(currentSection) {
@@ -388,7 +375,6 @@ export const App: React.FC = () => {
       ) : (
         <>
           <div className="aurora-background"></div>
-          <div id="cursor" className="custom-cursor"></div>
           <div className={`warp-transition ${showTransition ? "active" : ""}`}></div>
           
           <Navbar setCurrentSection={handleSectionChange} />

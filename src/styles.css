@@ -33,7 +33,7 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.5s ease;
-  cursor: none;
+  cursor: auto;
   scroll-behavior: smooth;
 }
 
@@ -48,7 +48,7 @@ body.dark-mode {
 
 a, button {
   font-family: var(--font-sans);
-  cursor: none;
+  cursor: pointer;
 }
 
 main {
@@ -152,41 +152,6 @@ main {
   margin-left: 2px;
 }
 @keyframes blink { 50% { opacity: 0; } }
-
-/* CURSOR  */
-.custom-cursor {
-  position: fixed;
-  width: 24px;
-  height: 24px;
-  border: 2px solid;
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: all 0.2s ease-out;
-  z-index: 10000;
-  mix-blend-mode: difference;
-}
-body.light-mode .custom-cursor { border-color: var(--primary-light); }
-body.dark-mode .custom-cursor { border-color: var(--primary-dark); }
-.custom-cursor:hover { 
-  transform: translate(-50%, -50%) scale(1.5);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-a:hover ~ .custom-cursor, button:hover ~ .custom-cursor { 
-  transform: translate(-50%, -50%) scale(1.5); 
-  border-width: 1px; 
-  width: 32px; 
-  height: 32px; 
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* HIDDEN IN PHONES AND PADS  */
-@media (hover: none) {
-  body { cursor: auto; }
-  .custom-cursor { display: none; }
-  a, button { cursor: pointer; }
-}
-
 
 /* NAVBAR  */
 .navbar {
