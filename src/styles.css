@@ -51,11 +51,11 @@ a, button {
   cursor: none;
 }
 
-/* CREATIVE CURSOR */
+/* SIMPLE CIRCULAR CURSOR */
 #cursor-dot {
   position: fixed;
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background-color: var(--primary-dark);
   pointer-events: none;
@@ -64,97 +64,14 @@ a, button {
   transition: all 0.1s ease-out;
 }
 
-#cursor-outline {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--primary-dark);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: all 0.3s ease-out;
-  mix-blend-mode: difference;
-}
-
-#cursor-trail {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--accent-dark);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9997;
-  transform: translate(-50%, -50%);
-  transition: all 0.5s ease-out;
-  opacity: 0.5;
-}
-
-.cursor-trail-element {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--primary-dark);
-  pointer-events: none;
-  z-index: 9996;
-  transform: translate(-50%, -50%);
-  animation: trail-fade 0.5s forwards;
-}
-
-@keyframes trail-fade {
-  0% {
-    opacity: 0.7;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0);
-  }
-}
-
-.cursor-hover {
-  transform: translate(-50%, -50%) scale(2) !important;
-}
-
-#cursor-dot.cursor-hover {
-  background-color: var(--accent-dark);
-  width: 12px;
-  height: 12px;
-}
-
-#cursor-outline.cursor-hover {
-  border-color: var(--accent-dark);
-  width: 60px;
-  height: 60px;
-  background-color: rgba(255, 93, 108, 0.1);
-}
-
 body.light-mode #cursor-dot {
   background-color: var(--primary-light);
-}
-
-body.light-mode #cursor-outline {
-  border-color: var(--primary-light);
-}
-
-body.light-mode .cursor-trail-element {
-  background-color: var(--primary-light);
-}
-
-body.light-mode #cursor-dot.cursor-hover {
-  background-color: var(--accent-light);
-}
-
-body.light-mode #cursor-outline.cursor-hover {
-  border-color: var(--accent-light);
-  background-color: rgba(230, 57, 70, 0.1);
 }
 
 /* HIDDEN IN PHONES AND PADS  */
 @media (hover: none) {
   body { cursor: auto; }
-  #cursor-dot, #cursor-outline, #cursor-trail, .cursor-trail-element { display: none; }
+  #cursor-dot { display: none; }
   a, button { cursor: pointer; }
 }
 
