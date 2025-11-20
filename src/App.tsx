@@ -387,7 +387,7 @@ export const App: React.FC = () => {
       ) : (
         <>
           <div className="aurora-background"></div>
-          <div id="cursor-dot"></div>
+          <div id="cursor-dot"><i className="fas fa-computer-mouse"></i></div>
           <div className={`warp-transition ${showTransition ? "active" : ""}`}></div>
           
           <Navbar setCurrentSection={handleSectionChange} />
