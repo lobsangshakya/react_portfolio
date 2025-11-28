@@ -51,23 +51,21 @@ a, button {
   cursor: none;
 }
 
-/* FONT AWESOME CURSOR */
+/* NORMAL CIRCULAR CURSOR */
 #cursor-dot {
   position: fixed;
-  width: 24px;
-  height: 24px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary-dark);
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: all 0.1s ease-out;
-  font-size: 24px;
-  line-height: 1;
-  text-align: center;
-  color: var(--primary-dark);
+  margin-left: -6px;
+  margin-top: -6px;
 }
 
 body.light-mode #cursor-dot {
-  color: var(--primary-light);
+  background-color: var(--primary-light);
 }
 
 /* HIDDEN IN PHONES AND PADS  */

@@ -363,7 +363,8 @@ export const App: React.FC = () => {
     if (!cursorDot) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      cursorDot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      cursorDot.style.left = `${e.clientX}px`;
+      cursorDot.style.top = `${e.clientY}px`;
     };
 
     document.addEventListener("mousemove", handleMouseMove);
@@ -387,7 +388,7 @@ export const App: React.FC = () => {
       ) : (
         <>
           <div className="aurora-background"></div>
-          <div id="cursor-dot"><i className="fas fa-computer-mouse"></i></div>
+          <div id="cursor-dot"></div>
           <div className={`warp-transition ${showTransition ? "active" : ""}`}></div>
           
           <Navbar setCurrentSection={handleSectionChange} />
