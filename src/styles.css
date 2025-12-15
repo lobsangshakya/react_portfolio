@@ -263,7 +263,21 @@ main {
   align-items: center;
   justify-content: center;
   padding: 6rem 5%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add animation delay for staggered effect */
+.section:nth-child(1) { transition-delay: 0.1s; }
+.section:nth-child(2) { transition-delay: 0.2s; }
+.section:nth-child(3) { transition-delay: 0.3s; }
+.section:nth-child(4) { transition-delay: 0.4s; }
 
 .content {
   text-align: center;
@@ -315,10 +329,16 @@ main {
   border: none;
   font-weight: 700;
   font-size: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 .btn:hover {
   transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.btn:active {
+  transform: translateY(1px);
 }
 .light-mode .btn {
   background: var(--primary-light);
@@ -330,7 +350,13 @@ main {
   color: var(--bg-dark);
   box-shadow: 0 4px 15px var(--shadow-dark);
 }
-.btn i { margin-left: 0.5rem; }
+.btn i { 
+  margin-left: 0.5rem; 
+  transition: transform 0.3s ease;
+}
+.btn:hover i {
+  transform: translateX(3px);
+}
 
 /* PROJECTS */
 .project-grid {
@@ -384,14 +410,33 @@ main {
     display: inline-flex;
     align-items: center;
     transition: all 0.3s ease;
+    position: relative;
 }
 .light-mode .btn-link { color: var(--accent-light); }
 .dark-mode .btn-link { color: var(--accent-dark); }
-.btn-link i { margin-left: 0.5rem; transition: transform 0.3s ease; }
+.btn-link i { 
+  margin-left: 0.5rem; 
+  transition: transform 0.3s ease;
+}
 .btn-link:hover {
   transform: translateX(3px);
 }
-.btn-link:hover i { transform: translateX(4px); }
+.btn-link:hover i { 
+  transform: translateX(4px);
+}
+.btn-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+.btn-link:hover::after {
+  width: 100%;
+}
 
 /* CONTACTS */
 .contact-info { 
@@ -415,9 +460,24 @@ main {
 .social-links a {
   font-size: 2rem;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
 }
 .social-links a:hover { 
   transform: scale(1.2) translateY(-5px);
+}
+.social-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: currentColor;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.social-links a:hover::after {
+  width: 100%;
 }
 .light-mode .social-links a { color: var(--text-light); }
 .dark-mode .social-links a { color: var(--text-dark); }

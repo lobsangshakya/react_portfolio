@@ -2,6 +2,7 @@ import "./styles.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import InteractiveDog from "./components/InteractiveDog";
 
 // PROJECTS 
 const projectData = [
@@ -145,6 +146,9 @@ const Hero: React.FC<SectionProps> = ({ setCurrentSection }) => (
       >
         Discover More <i className="fas fa-arrow-right"></i>
       </motion.button>
+      <div style={{ position: 'absolute', top: '20px', right: '20px' }}>
+        <InteractiveDog />
+      </div>
     </div>
   </motion.section>
 );
@@ -369,6 +373,28 @@ export const App: React.FC = () => {
 
     document.addEventListener("mousemove", handleMouseMove);
     return () => document.removeEventListener("mousemove", handleMouseMove);
+  }, [currentSection]);
+  
+  // Scroll animation effect
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const sections = document.querySelectorAll('.section');
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
+    };
   }, [currentSection]);
   
   const renderSection = () => {
