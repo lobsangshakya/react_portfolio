@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../styles/interactive-dog.css';
+import '../assets/interactive-dog.css';
 
 const InteractiveDog = () => {
   const [isHovered, setIsHovered] = useState(false);
