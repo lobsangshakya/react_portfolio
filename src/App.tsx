@@ -1,4 +1,5 @@
 import "./styles.css";
+// @ts-ignore
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";

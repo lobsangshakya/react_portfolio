@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+// @ts-ignore
 import '../assets/interactive-dog.css';
 
 const InteractiveDog = () => {
@@ -11,7 +12,8 @@ const InteractiveDog = () => {
     "Hey there! 🐾",
     "Welcome! 🎉",
     "Nice to meet you! 🐶",
-    "Have a great day! ☀️"
+    "Have a great day! ☀️",
+    "Nornor!🌸"
   ];
 
   const handleMouseEnter = () => {
