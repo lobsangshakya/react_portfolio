@@ -1,8 +1,8 @@
 import "./styles.css";
 // @ts-ignore
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import InteractiveDog from "./components/InteractiveDog";
 
 // PROJECTS 
@@ -16,6 +16,16 @@ const projectData = [
     title: "Eco Smart Bin",
     description: "An AI-driven waste management website promoting cleanliness with smart sorting and an interactive design.",
     repoUrl: "https://github.com/lobsangshakya/Eco_smart_bin",
+  },
+  {
+    title: "IntelliMove DotCatcher",
+    description: "Real-Time Dot Game – click/press randomly appearing dots on a grid. Kafka streams dot events, user actions, and misses to a dashboard. Tracks score, misses, and game duration.",
+    repoUrl: "https://github.com/lobsangshakya/IntelliMove---DotCatcher",
+  },
+  {
+    title: "ConvoAI",
+    description: "an AI chatbot leveraging reinforcement learning for adaptive responses, fully containerized for easy deployment.",
+    repoUrl: "https://github.com/lobsangshakya/ConvoAI",
   },
   {
     title: "Myob to Xero Conversion",
@@ -134,7 +144,7 @@ const Hero: React.FC<SectionProps> = ({ setCurrentSection }) => (
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
       >
-        Exploring the intersection of Data Science, creativity, and innovation.
+        Innovating across Data, Web and AI
       </motion.p>
       <motion.button 
         className="btn" 
@@ -408,6 +418,17 @@ export const App: React.FC = () => {
     }
   };
 
+  // Add scroll progress indicator
+  const { scrollYProgress } = useScroll();
+  
+  // Add scroll progress effect
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const container = document.querySelector('main');
+    if (container) {
+      container.style.setProperty('--scroll-progress', latest.toString());
+    }
+  });
+
   return (
     <>
       {currentSection === "loading" ? (
@@ -417,6 +438,12 @@ export const App: React.FC = () => {
           <div className="aurora-background"></div>
           <div id="cursor-dot"></div>
           <div className={`warp-transition ${showTransition ? "active" : ""}`}></div>
+          
+          {/* Scroll progress bar */}
+          <motion.div 
+            className="progress-bar"
+            style={{ scaleX: scrollYProgress }}
+          />
           
           <Navbar setCurrentSection={handleSectionChange} />
           
@@ -439,6 +466,27 @@ export const App: React.FC = () => {
               <DarkModeIcon />
             </button>
           </motion.div>
+          
+          {/* Floating particles effect */}
+          <div className="particles-container">
+            {[...Array(15)].map((_, i) => (
+              <motion.div 
+                key={i}
+                className="particle"
+                animate={{
+                  y: [0, -20, 0],
+                  x: [0, Math.sin(i) * 20, 0],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: Math.random() * 2,
+                }}
+              />
+            ))}
+          </div>
         </>
       )}
     </>
