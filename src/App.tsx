@@ -152,6 +152,14 @@ const Hero: React.FC<SectionProps> = ({ setCurrentSection }) => (
       >
         Innovating across Data, Web and AI
       </motion.p>
+      <motion.p
+        className="location"
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+      >
+        <i className="fas fa-map-marker-alt"></i> Bangalore, India
+      </motion.p>
       <motion.button 
         className="btn" 
         onClick={() => setCurrentSection("about")}
