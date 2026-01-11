@@ -427,16 +427,6 @@ export const App: React.FC = () => {
     };
   }, [currentSection]);
   
-  const renderSection = () => {
-    switch(currentSection) {
-        case 'hero': return <Hero setCurrentSection={handleSectionChange} />;
-        case 'about': return <About setCurrentSection={handleSectionChange} />;
-        case 'projects': return <Projects setCurrentSection={handleSectionChange} />;
-        case 'contacts': return <Contacts setCurrentSection={handleSectionChange} />;
-        default: return <Hero setCurrentSection={handleSectionChange} />;
-    }
-  };
-
   // Add scroll progress indicator
   const { scrollYProgress } = useScroll();
   
@@ -447,6 +437,16 @@ export const App: React.FC = () => {
       container.style.setProperty('--scroll-progress', latest.toString());
     }
   });
+
+  const renderSection = () => {
+    switch(currentSection) {
+        case 'hero': return <Hero setCurrentSection={handleSectionChange} />;
+        case 'about': return <About setCurrentSection={handleSectionChange} />;
+        case 'projects': return <Projects setCurrentSection={handleSectionChange} />;
+        case 'contacts': return <Contacts setCurrentSection={handleSectionChange} />;
+        default: return <Hero setCurrentSection={handleSectionChange} />;
+    }
+  };
 
   return (
     <>
