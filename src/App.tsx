@@ -3,7 +3,6 @@ import "./styles.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import InteractiveDog from "./components/InteractiveDog";
 
 // PROJECTS 
 const projectData = [
@@ -171,9 +170,7 @@ const Hero: React.FC<SectionProps> = ({ setCurrentSection }) => (
       >
         Discover More <i className="fas fa-arrow-right"></i>
       </motion.button>
-      <div style={{ position: 'absolute', top: '20px', right: '20px' }}>
-        <InteractiveDog />
-      </div>
+
     </div>
   </motion.section>
 );
