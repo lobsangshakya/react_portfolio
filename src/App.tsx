@@ -11,31 +11,37 @@ const projectData = [
     title: "AgriSathi",
     description: "A smart app helping farmers with crop advice, weather updates , and market prices in regional languages.",
     repoUrl: "https://github.com/lobsangshakya/AgriSathi-app",
+    tech: ["React", "Supabase", "CNN", "Python"]
   },
   {
     title: "Eco Smart Bin",
     description: "An AI-driven waste management website promoting cleanliness with smart sorting and an interactive design.",
     repoUrl: "https://github.com/lobsangshakya/Eco_smart_bin",
+    tech: ["HTML", "CSS", "JavaScript"]
   },
   {
     title: "IntelliMove DotCatcher",
-    description: "Real-Time Dot Game – click/press randomly appearing dots on a grid. Kafka streams dot events, user actions, and misses to a dashboard. Tracks score, misses, and game duration.",
+    description: "Real-Time Dot Game – click appearing dots; Kafka streams events to track score, misses, and duration.",
     repoUrl: "https://github.com/lobsangshakya/IntelliMove---DotCatcher",
+    tech: ["React", "Python", "Kafka", "WebSocket", "Docker"]
   },
   {
     title: "ConvoAI",
     description: "an AI chatbot leveraging reinforcement learning for adaptive responses, fully containerized for easy deployment.",
     repoUrl: "https://github.com/lobsangshakya/ConvoAI",
+    tech: ["Python", "AI", "RL", "Docker", "FastAPI"]
   },
   {
     title: "Myob to Xero Conversion",
     description: "A streamlined conversion tool for MMC Company, enabling live file conversions with a user-friendly interface.",
     repoUrl: "https://github.com/lobsangshakya/Myob_to_Xero",
+    tech: ["HTML", "CSS", "JavaScript", "Django", "Python"]
   },
   {
     title: "Project Zinova",
     description: "Zinova uses AI and blockchain to connect farmers, restaurants, and NGOs, redistributing surplus food efficiently to fight waste and hunger.",
     repoUrl: "https://github.com/lobsangshakya/Project-Zinova",
+    tech: ["React", "Microsoft Azure", "Node.js", "AI"]
   },
 ];
 
@@ -243,6 +249,11 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
           >
             <h3>{project.title}</h3>
             <p>{project.description}</p>
+            <div className="tech-stack">
+              {project.tech.map((tech, techIndex) => (
+                <span key={techIndex} className="tech-item">{tech}</span>
+              ))}
+            </div>
             <motion.a 
               href={project.repoUrl} 
               className="btn-link" 

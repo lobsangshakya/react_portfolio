@@ -430,9 +430,12 @@ main {
 /* PROJECTS */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin: 3rem 0;
+  justify-items: center;
+  justify-content: center;
+  align-items: start;
 }
 .project-card {
   text-align: left;
@@ -443,6 +446,11 @@ main {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-style: preserve-3d;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  aspect-ratio: 1;
+  min-width: 300px;
 }
 .light-mode .project-card {
   background: var(--glass-bg-light);
@@ -460,17 +468,45 @@ main {
 }
 
 .project-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 0.75rem;
   transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .light-mode .project-card h3 { color: var(--primary-light); }
 .dark-mode .project-card h3 { color: var(--primary-dark); }
 .project-card p {
-    font-size: 0.95rem; 
-    line-height: 1.6; 
-    margin-bottom: 1.5rem;
+    font-size: 0.9rem; 
+    line-height: 1.5; 
+    margin-bottom: 0.5rem;
     transition: all 0.3s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 0.75rem;
+}
+
+.tech-item {
+    background-color: var(--primary-dark);
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1rem;
+    white-space: nowrap;
+}
+
+.light-mode .tech-item {
+    background-color: var(--primary-light);
+    color: white;
 }
 
 .btn-link {
@@ -480,6 +516,8 @@ main {
     align-items: center;
     transition: all 0.3s ease;
     position: relative;
+    margin-top: auto;
+    align-self: flex-start;
 }
 .light-mode .btn-link { color: var(--accent-light); }
 .dark-mode .btn-link { color: var(--accent-dark); }
@@ -639,5 +677,13 @@ main {
   .navbar-links a:hover {
     transform: translateX(10px);
   }
-  .project-grid { grid-template-columns: 1fr; }
+  .project-grid { 
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .project-grid { 
+    grid-template-columns: 1fr;
+  }
 }
