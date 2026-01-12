@@ -81,11 +81,12 @@ body.light-mode #cursor-dot {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 4px;
   background: var(--primary-dark);
   transform-origin: 0%;
   z-index: 9999;
   pointer-events: none;
+  box-shadow: 0 0 10px rgba(255, 93, 108, 0.7);
 }
 
 /* PARTICLE EFFECTS */
@@ -142,6 +143,10 @@ body.light-mode #cursor-dot {
 
 .light-mode .progress-bar {
   background: var(--primary-light);
+}
+
+.dark-mode .progress-bar {
+  background: var(--primary-dark);
 }
 
 main {
