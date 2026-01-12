@@ -3,6 +3,7 @@ import "./styles.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+// import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // PROJECTS 
 const projectData = [
