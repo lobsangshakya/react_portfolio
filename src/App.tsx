@@ -1,7 +1,7 @@
 import "./styles.css";
 // @ts-ignore
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 
 // PROJECTS 
