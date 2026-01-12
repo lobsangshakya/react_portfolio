@@ -16,7 +16,7 @@ const projectData = [
     title: "Eco Smart Bin",
     description: "An AI-driven waste management website promoting cleanliness with smart sorting and an interactive design.",
     repoUrl: "https://github.com/lobsangshakya/Eco_smart_bin",
-    tech: ["HTML", "CSS", "JavaScript"]
+    tech: ["HTML", "CSS", "JavaScript", "Django"]
   },
   {
     title: "IntelliMove DotCatcher",
