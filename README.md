@@ -7,7 +7,7 @@ To add images to the portfolio:
 1. Place your image files in the `src/assets/images` directory
 2. Import the image in your component:
    ```javascript
-   import myImage from './assets/images/Portfolio Img.png';
+   import myImage from './assets/images/Portfolio_Img.png';
    ```
 3. Use the image in your JSX:
    ```jsx
@@ -16,5 +16,7 @@ To add images to the portfolio:
 
 Alternatively, you can place images in the `public` folder and reference them directly:
    ```jsx
-   <img src="/images/Portfolio Img.png" alt="A quick look at my front page of the portfolio" />
+   <img src="/images/Portfolio_Img.png" alt="A quick look at my front page of the portfolio" />
    ```
+
+**Note**: Make sure to replace `Portfolio_Img.png` with the actual filename of your image. If your image has spaces in the filename, either rename it to remove spaces or escape them properly.
