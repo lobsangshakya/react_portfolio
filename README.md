@@ -1,1 +1,28 @@
-Welcome to my personal portfolio, built with React and Vite. This site showcases my journey as a Full-Stack Developer and Data Science enthusiast, highlighting my skills in building modern, data-driven web applications. Here you can explore my key projects, from AI-powered agricultural systems to financial data tools, which reflect my passion for creating scalable and intelligent software solutions.
+# Personal Portfolio
+
+This is my personal portfolio showcasing my work as a developer.
+
+Built with React, Vite, and TypeScript.
+
+## Running Locally
+
+1. Make sure Node.js is installed
+2. Open terminal and navigate to this directory
+3. Run:
+
+```bash
+npm install
+npm run dev
+```
+
+Visit `http://localhost:5173` in your browser.
+
+## Deploying
+
+Build for production:
+
+```bash
+npm run build
+```
+
+This creates a `dist` folder with your production-ready site.
