@@ -41,7 +41,7 @@ const projectData = [
     title: "CSV_DB_API",
     description: "A beginner‑friendly API to import and serve CSV data, built with FastAPI and SQLAlchemy for easy CRUD operations via REST endpoints.",
     repoUrl: "https://github.com/lobsangshakya/CSV_DB_API",
-    tech: ["React", "Microsoft Azure", "Node.js", "AI"]
+    tech: ["Python", "FastApi", "SQLAlchemy", "Uvicorn"]
   },
 ];
 
