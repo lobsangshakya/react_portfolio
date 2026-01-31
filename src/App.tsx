@@ -38,9 +38,9 @@ const projectData = [
     tech: ["HTML", "CSS", "JavaScript", "Django", "Python"]
   },
   {
-    title: "Project Zinova",
-    description: "Zinova uses AI and blockchain to connect farmers, restaurants, and NGOs, redistributing surplus food efficiently to fight waste and hunger.",
-    repoUrl: "https://github.com/lobsangshakya/Project-Zinova",
+    title: "CSV_DB_API",
+    description: "A beginner‑friendly API to import and serve CSV data, built with FastAPI and SQLAlchemy for easy CRUD operations via REST endpoints.",
+    repoUrl: "https://github.com/lobsangshakya/CSV_DB_API",
     tech: ["React", "Microsoft Azure", "Node.js", "AI"]
   },
 ];
