@@ -198,8 +198,7 @@ const About: React.FC<SectionProps> = ({ setCurrentSection }) => (
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
       >
-        I'm Lobsang Tsetan Shakya, a Full-Stack Developer and Data Science
-        Enthusiast. With experience as a Data Science Intern at MMC Convert and Coordinator at ANOVA Club, I am passionate about building innovative, data-driven solutions that make an impact.
+        I am Lobsang Tsetan Shakya, a Full-Stack Developer and Data Science enthusiast. With experience as a Data Science Intern at MMC Convert and as a Technical Member at ANOVA Club, I am passionate about creating innovative, data-driven solutions that drive impact.
       </motion.p>
       <motion.button 
         className="btn" 
