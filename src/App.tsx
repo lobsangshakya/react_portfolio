@@ -259,7 +259,7 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
                 <span key={techIndex} className="tech-item">{tech}</span>
               ))}
             </div>
-            <motion.a 
+            <motion.
               href={project.repoUrl} 
               className="btn-link" 
               target="_blank" 
