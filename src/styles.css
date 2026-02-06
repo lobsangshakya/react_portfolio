@@ -34,7 +34,14 @@ body {
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.5s ease;
   cursor: default;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: none;
   scroll-behavior: smooth;
+  /* Smoother scrolling */
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body.light-mode {
@@ -51,9 +58,22 @@ a, button {
   cursor: pointer;
 }
 
-
-
-
+/* NORMAL CIRCULAR CURSOR */
+#cursor-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary-dark);
+  pointer-events: none;
+  z-index: 9999;
+  margin-left: -6px;
+  margin-top: -6px;
+  /* Smooth transition for cursor movement */
+  transition: transform 0.1s ease-out, width 0.2s ease, height 0.2s ease;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
 
 /* HIDDEN IN PHONES AND PADS  */
 @media (hover: none) {
@@ -73,6 +93,10 @@ a, button {
   z-index: 9999;
   pointer-events: none;
   box-shadow: 0 0 10px rgba(255, 93, 108, 0.7);
+  /* Smoother transform animation */
+  transform: scaleX(var(--scroll-progress, 0));
+  transition: transform 0.05s linear;
+  will-change: transform;
 }
 
 /* PARTICLE EFFECTS */
@@ -202,7 +226,7 @@ main {
   box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
   backdrop-filter: blur(10px);
   transform: scale(1);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .terminal-header { 
   background: #2a2a2a; 
@@ -248,10 +272,13 @@ main {
   justify-content: space-between;
   align-items: center;
   z-index: 100;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1), backdrop-filter 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  /* Performance enhancement */
+  transform: translateZ(0);
+  will-change: transform;
 }
 .light-mode .navbar { background: var(--glass-bg-light); border-bottom: 1px solid var(--glass-border-light); }
 .dark-mode .navbar { background: var(--glass-bg-dark); border-bottom: 1px solid var(--glass-border-dark); }
@@ -272,7 +299,7 @@ main {
   font-size: 1rem; 
   position: relative; 
   padding-bottom: 0.25rem; 
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .light-mode .navbar-links a { color: var(--text-light); }
 .dark-mode .navbar-links a { color: var(--text-dark); }
@@ -286,7 +313,7 @@ main {
   height: 2px;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .light-mode .navbar-links a::after { background-color: var(--primary-light); }
 .dark-mode .navbar-links a::after { background-color: var(--primary-dark); }
@@ -315,6 +342,7 @@ main {
 .dark-mode .hamburger { color: var(--text-dark); }
 .hamburger:hover {
   transform: scale(1.1);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* ABOUT  */
@@ -390,9 +418,12 @@ main {
   border: none;
   font-weight: 700;
   font-size: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.3s ease;
   position: relative;
   overflow: hidden;
+  /* Performance enhancement */
+  transform: translateZ(0);
+  will-change: transform;
 }
 .btn:hover {
   transform: translateY(-3px);
@@ -400,6 +431,7 @@ main {
 }
 .btn:active {
   transform: translateY(1px);
+  transition: transform 0.1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .light-mode .btn {
   background: var(--primary-light);
@@ -435,7 +467,7 @@ main {
   border-radius: 16px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   transform-style: preserve-3d;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -443,6 +475,9 @@ main {
   height: 300px;
   aspect-ratio: 1;
   min-width: 300px;
+  /* Performance enhancement */
+  transform: translateZ(0);
+  will-change: transform;
 }
 .light-mode .project-card {
   background: var(--glass-bg-light);
@@ -457,6 +492,7 @@ main {
 .project-card:hover {
   transform: translateY(-10px) perspective(1000px) rotateX(3deg);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .project-card h3 {
@@ -558,8 +594,11 @@ main {
 }
 .social-links a {
   font-size: 2rem;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
+  /* Performance enhancement */
+  transform: translateZ(0);
+  will-change: transform;
 }
 .social-links a:hover { 
   transform: scale(1.2) translateY(-5px);
@@ -572,7 +611,7 @@ main {
   width: 0;
   height: 3px;
   background-color: currentColor;
-  transition: all 0.3s ease;
+  transition: width 0.3s ease;
   transform: translateX(-50%);
 }
 .social-links a:hover::after {
@@ -615,6 +654,7 @@ main {
 .mode-toggle button:hover {
   background-color: rgba(128, 128, 128, 0.2);
   transform: scale(1.1);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .mode-toggle button:active {
   transform: scale(0.95);

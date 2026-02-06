@@ -38,11 +38,11 @@ const projectData = [
     tech: ["HTML", "CSS", "JavaScript", "Django", "Python"]
   },
   {
-    title: "Project Zinova",
-    description: "Zinova uses AI and blockchain to connect farmers, restaurants, and NGOs, redistributing surplus food efficiently to fight waste and hunger.",
-    repoUrl: "https://github.com/lobsangshakya/Project-Zinova",
-    tech: ["React", "Microsoft Azure", "Node.js", "AI"]
-  },
+    title: "CSV_DB_API",
+    description: "A simple FastAPI project that reads a CSV file and stores the data in a database. Includes endpoints to view, add, and fetch records using SQLAlchemy. Great for learning FastAPI, databases, and CRUD operations.",
+    repoUrl: "https://github.com/lobsangshakya/CSV_DB_API",
+    tech: ["Python", "FastAPI", "SQLAlchemy", "SQLite"]
+  }
 ];
 
 const socialLinks = [
