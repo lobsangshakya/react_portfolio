@@ -469,7 +469,7 @@ main {
   border-radius: 16px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   transform-style: preserve-3d;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -477,6 +477,9 @@ main {
   height: 300px;
   aspect-ratio: 1;
   min-width: 300px;
+  /* Performance enhancement */
+  transform: translateZ(0);
+  will-change: transform;
 }
 .light-mode .project-card {
   background: var(--glass-bg-light);
@@ -593,8 +596,11 @@ main {
 }
 .social-links a {
   font-size: 2rem;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
+  /* Performance enhancement */
+  transform: translateZ(0);
+  will-change: transform;
 }
 .social-links a:hover { 
   transform: scale(1.2) translateY(-5px);
