@@ -1,8 +1,8 @@
 import "./styles.css";
 // @ts-ignore
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 // import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // PROJECTS 
@@ -38,10 +38,10 @@ const projectData = [
     tech: ["HTML", "CSS", "JavaScript", "Django", "Python"]
   },
   {
-    title: "Project Zinova",
-    description: "Zinova uses AI and blockchain to connect farmers, restaurants, and NGOs, redistributing surplus food efficiently to fight waste and hunger.",
-    repoUrl: "https://github.com/lobsangshakya/Project-Zinova",
-    tech: ["React", "Microsoft Azure", "Node.js", "AI"]
+    title: "CSV_DB_API",
+    description: "A simple FastAPI project that reads a CSV file and stores the data in a database. Includes endpoints to view, add, and fetch records using SQLAlchemy. Great for learning FastAPI, databases, and CRUD operations.",
+    repoUrl: "https://github.com/lobsangshakya/CSV_DB_API",
+    tech: ["Python", "FastAPI", "SQLAlchemy", "SQLite"]
   },
 ];
 
@@ -102,27 +102,8 @@ const Navbar: React.FC<SectionProps> = ({ setCurrentSection }) => {
     e.preventDefault();
     setCurrentSection(sectionId);
     setIsOpen(false);
-    
-    // Enhanced smooth scroll with custom easing
-    const scrollDuration = 700;
-    const startTime = performance.now();
-    const startPosition = window.pageYOffset;
-    
-    const scrollStep = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / scrollDuration, 1);
-      
-      // Custom smooth easing function
-      const easeOut = 1 - Math.pow(1 - progress, 4);
-      
-      window.scrollTo(0, startPosition + (0 - startPosition) * easeOut);
-      
-      if (progress < 1) {
-        requestAnimationFrame(scrollStep);
-      }
-    };
-    
-    requestAnimationFrame(scrollStep);
+    // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -130,10 +111,7 @@ const Navbar: React.FC<SectionProps> = ({ setCurrentSection }) => {
       className="navbar"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ 
-        duration: 0.6,
-        ease: [0.23, 1, 0.32, 1]
-      }}
+      transition={{ duration: 0.5 }}
     >
       <a href="#" className="nav-logo" onClick={(e) => handleNavClick("hero", e)}>
         Lobsang S.
@@ -157,61 +135,39 @@ const Hero: React.FC<SectionProps> = ({ setCurrentSection }) => (
     id="hero"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ 
-      duration: 1,
-      ease: [0.23, 1, 0.32, 1]
-    }}
+    transition={{ duration: 0.8 }}
   >
     <div className="content">
       <motion.h1
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.3,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.2, duration: 0.6 }}
       >
         Welcome to <span>Lobsang's Portfolio</span>
       </motion.h1>
       <motion.p
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.5,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.4, duration: 0.6 }}
       >
         Innovating across Data, Web and AI
       </motion.p>
       <motion.p
         className="location"
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.7,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.5, duration: 0.6 }}
       >
         <i className="fas fa-map-marker-alt"></i> Bangalore, India
       </motion.p>
       <motion.button 
         className="btn" 
         onClick={() => setCurrentSection("about")}
-        whileHover={{ 
-          scale: 1.05,
-          transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] }
-        }}
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.9,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.6, duration: 0.6 }}
       >
         Discover More <i className="fas fa-arrow-right"></i>
       </motion.button>
@@ -226,32 +182,21 @@ const About: React.FC<SectionProps> = ({ setCurrentSection }) => (
     id="about"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ 
-      duration: 1,
-      ease: [0.23, 1, 0.32, 1]
-    }}
+    transition={{ duration: 0.8 }}
     exit={{ opacity: 0 }}
   >
     <div className="content">
       <motion.h2
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.3,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.2, duration: 0.6 }}
       >
         About <span>Me</span>
       </motion.h2>
       <motion.p
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.5,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.4, duration: 0.6 }}
       >
         I'm Lobsang Tsetan Shakya, a Full-Stack Developer and Data Science
         Enthusiast. With experience as a Data Science Intern at MMC Convert and Coordinator at ANOVA Club, I am passionate about building innovative, data-driven solutions that make an impact.
@@ -259,18 +204,11 @@ const About: React.FC<SectionProps> = ({ setCurrentSection }) => (
       <motion.button 
         className="btn" 
         onClick={() => setCurrentSection("projects")}
-        whileHover={{ 
-          scale: 1.05,
-          transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] }
-        }}
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.7,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.6, duration: 0.6 }}
       >
         View My Work
       </motion.button>
@@ -284,63 +222,36 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
     id="projects"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ 
-      duration: 1,
-      ease: [0.23, 1, 0.32, 1]
-    }}
+    transition={{ duration: 0.8 }}
     exit={{ opacity: 0 }}
   >
     <div className="content">
       <motion.h2
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.3,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.2, duration: 0.6 }}
       >
         My <span>Projects</span>
       </motion.h2>
       <motion.p
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.5,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.4, duration: 0.6 }}
       >
         Here are a few things I've been working on. For more, check out my <a href="https://github.com/lobsangshakya" target="_blank" rel="noopener noreferrer">GitHub</a>.
       </motion.p>
       <motion.div 
         className="project-grid"
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.7,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.6, duration: 0.6 }}
       >
         {projectData.map((project, index) => (
           <motion.div 
             className="project-card" 
             key={index}
-            whileHover={{ 
-              y: -12,
-              transition: { 
-                duration: 0.4,
-                ease: [0.23, 1, 0.32, 1],
-                type: "spring",
-                stiffness: 400
-              }
-            }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 300,
-              damping: 20
-            }}
+            whileHover={{ y: -10 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
             <h3>{project.title}</h3>
             <p>{project.description}</p>
@@ -354,10 +265,7 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
               className="btn-link" 
               target="_blank" 
               rel="noopener noreferrer"
-              whileHover={{ 
-                x: 8,
-                transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] }
-              }}
+              whileHover={{ x: 5 }}
               whileTap={{ scale: 0.95 }}
             >
               View on GitHub <i className="fa-brands fa-github"></i>
@@ -368,18 +276,11 @@ const Projects: React.FC<SectionProps> = ({ setCurrentSection }) => (
       <motion.button 
         className="btn" 
         onClick={() => setCurrentSection("contacts")}
-        whileHover={{ 
-          scale: 1.05,
-          transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] }
-        }}
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 1,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.8, duration: 0.6 }}
       >
         Let's Connect
       </motion.button>
@@ -393,56 +294,37 @@ const Contacts: React.FC<SectionProps> = ({ setCurrentSection }) => (
     id="contacts"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ 
-      duration: 1,
-      ease: [0.23, 1, 0.32, 1]
-    }}
+    transition={{ duration: 0.8 }}
     exit={{ opacity: 0 }}
   >
     <div className="content">
       <motion.h2
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.3,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.2, duration: 0.6 }}
       >
         Get In <span>Touch</span>
       </motion.h2>
       <motion.p
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.5,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.4, duration: 0.6 }}
       >
         I'm currently available for freelance work and open to discussing new projects. Let's create something amazing together!
       </motion.p>
       <motion.div 
         className="contact-info"
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.7,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.6, duration: 0.6 }}
       >
         <p><i className="fa-solid fa-envelope"></i> lobsangshakya5@gmail.com</p>
       </motion.div>
       <motion.div 
         className="social-links"
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 0.9,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.7, duration: 0.6 }}
       >
         {socialLinks.map((link, index) => (
           <motion.a 
@@ -451,22 +333,9 @@ const Contacts: React.FC<SectionProps> = ({ setCurrentSection }) => (
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label={link.icon}
-            whileHover={{ 
-              y: -8, 
-              scale: 1.15,
-              transition: { 
-                duration: 0.4,
-                ease: [0.23, 1, 0.32, 1],
-                type: "spring",
-                stiffness: 500
-              }
-            }}
+            whileHover={{ y: -5, scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 400,
-              damping: 25
-            }}
+            transition={{ type: "spring", stiffness: 400 }}
           >
             <i className={`fa-brands ${link.icon}`}></i>
           </motion.a>
@@ -475,18 +344,11 @@ const Contacts: React.FC<SectionProps> = ({ setCurrentSection }) => (
        <motion.button 
         className="btn" 
         onClick={() => setCurrentSection("hero")}
-        whileHover={{ 
-          scale: 1.05,
-          transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] }
-        }}
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ 
-          delay: 1.1,
-          duration: 0.8,
-          ease: [0.23, 1, 0.32, 1]
-        }}
+        transition={{ delay: 0.8, duration: 0.6 }}
       >
         Back to Home
       </motion.button>
@@ -515,15 +377,11 @@ export const App: React.FC = () => {
 
   const handleSectionChange = (sectionId: string) => {
     if (sectionId === currentSection) return;
-    
-    // Enhanced transition timing for smoother feel
     setShowTransition(true);
     setTimeout(() => {
       setCurrentSection(sectionId);
-      setTimeout(() => {
-        setShowTransition(false);
-      }, 300);
-    }, 500);
+      setShowTransition(false);
+    }, 800);
   };
 
   useEffect(() => {
@@ -536,34 +394,13 @@ export const App: React.FC = () => {
     const cursorDot = document.getElementById("cursor-dot");
     if (!cursorDot) return;
 
-    let mousePosition = { x: 0, y: 0 };
-    let smoothPosition = { x: 0, y: 0 };
-    let animationFrameId: number;
-
     const handleMouseMove = (e: MouseEvent) => {
-      mousePosition = { x: e.clientX, y: e.clientY };
-    };
-
-    const updateCursor = () => {
-      // Enhanced smoothing with adaptive factor
-      const smoothingFactor = 0.15;
-      smoothPosition.x += (mousePosition.x - smoothPosition.x) * smoothingFactor;
-      smoothPosition.y += (mousePosition.y - smoothPosition.y) * smoothingFactor;
-
-      cursorDot.style.left = `${smoothPosition.x}px`;
-      cursorDot.style.top = `${smoothPosition.y}px`;
-      cursorDot.style.transform = `translate3d(0, 0, 0)`;
-
-      animationFrameId = requestAnimationFrame(updateCursor);
+      cursorDot.style.left = `${e.clientX}px`;
+      cursorDot.style.top = `${e.clientY}px`;
     };
 
     document.addEventListener("mousemove", handleMouseMove);
-    animationFrameId = requestAnimationFrame(updateCursor);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
-    };
+    return () => document.removeEventListener("mousemove", handleMouseMove);
   }, [currentSection]);
   
   // Scroll animation effect
@@ -574,10 +411,7 @@ export const App: React.FC = () => {
           entry.target.classList.add('visible');
         }
       });
-    }, { 
-      threshold: 0.15,
-      rootMargin: "0px 0px -50px 0px"
-    });
+    }, { threshold: 0.1 });
 
     const sections = document.querySelectorAll('.section');
     sections.forEach((section) => {
@@ -591,17 +425,11 @@ export const App: React.FC = () => {
     };
   }, [currentSection]);
   
-  // Enhanced scroll progress indicator
+  // Add scroll progress indicator
   const { scrollYProgress } = useScroll();
   
-  // Create smoothed scroll progress
-  const smoothProgress = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, 1]
-  );
-  
-  useMotionValueEvent(smoothProgress, "change", (latest) => {
+  // Add scroll progress effect
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const container = document.querySelector('main');
     if (container) {
       container.style.setProperty('--scroll-progress', latest.toString());
@@ -628,14 +456,10 @@ export const App: React.FC = () => {
           <div id="cursor-dot"></div>
           <div className={`warp-transition ${showTransition ? "active" : ""}`}></div>
           
-          {/* Enhanced scroll progress bar */}
+          {/* Scroll progress bar */}
           <motion.div 
             className="progress-bar"
-            style={{ scaleX: smoothProgress }}
-            transition={{ 
-              duration: 0.1,
-              ease: "linear"
-            }}
+            style={{ scaleX: scrollYProgress }}
           />
           
           <Navbar setCurrentSection={handleSectionChange} />
@@ -650,11 +474,7 @@ export const App: React.FC = () => {
             className="mode-toggle"
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ 
-              delay: 1.2,
-              duration: 0.6,
-              ease: [0.23, 1, 0.32, 1]
-            }}
+            transition={{ delay: 1, duration: 0.5 }}
           >
             <button onClick={() => setIsDarkMode(false)} aria-label="Switch to light mode">
               <LightModeIcon />
@@ -664,23 +484,22 @@ export const App: React.FC = () => {
             </button>
           </motion.div>
           
-          {/* Enhanced floating particles effect */}
+          {/* Floating particles effect */}
           <div className="particles-container">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(15)].map((_, i) => (
               <motion.div 
                 key={i}
                 className="particle"
                 animate={{
-                  y: [0, -25, 0],
-                  x: [0, Math.sin(i * 0.5) * 25, 0],
-                  opacity: [0.2, 0.7, 0.2],
-                  scale: [1, 1.2, 1]
+                  y: [0, -20, 0],
+                  x: [0, Math.sin(i) * 20, 0],
+                  opacity: [0.3, 0.8, 0.3],
                 }}
                 transition={{
-                  duration: 4 + Math.random() * 3,
+                  duration: 3 + Math.random() * 2,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: Math.random() * 3
+                  delay: Math.random() * 2,
                 }}
               />
             ))}
