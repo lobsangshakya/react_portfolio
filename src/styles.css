@@ -33,7 +33,7 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.5s ease;
-  cursor: none;
+  cursor: default;
   scroll-behavior: smooth;
 }
 
@@ -48,30 +48,16 @@ body.dark-mode {
 
 a, button {
   font-family: var(--font-sans);
-  cursor: none;
+  cursor: pointer;
 }
 
-/* NORMAL CIRCULAR CURSOR */
-#cursor-dot {
-  position: fixed;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--primary-dark);
-  pointer-events: none;
-  z-index: 9999;
-  margin-left: -6px;
-  margin-top: -6px;
-}
 
-body.light-mode #cursor-dot {
-  background-color: var(--primary-light);
-}
+
+
 
 /* HIDDEN IN PHONES AND PADS  */
 @media (hover: none) {
   body { cursor: auto; }
-  #cursor-dot { display: none; }
   a, button { cursor: pointer; }
 }
 
@@ -161,8 +147,9 @@ main {
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 0;
+  z-index: -1;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .aurora-background::before,
