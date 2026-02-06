@@ -521,7 +521,7 @@ const Contacts: React.FC<SectionProps> = ({ setCurrentSection }) => (
         transition={{ delay: 0.6, duration: 0.6 }}
       >
         <p><i className="fa-solid fa-envelope"></i> lobsangshakya5@gmail.com</p>
-      </motion.div>
+      {/* </motion.div> */}
       <motion.div 
         className="social-links"
         initial={{ y: 30, opacity: 0 }}
