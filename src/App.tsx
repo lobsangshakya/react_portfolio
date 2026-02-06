@@ -42,6 +42,7 @@ const projectData = [
     description: "A simple FastAPI project that reads a CSV file and stores the data in a database. Includes endpoints to view, add, and fetch records using SQLAlchemy. Great for learning FastAPI, databases, and CRUD operations.",
     repoUrl: "https://github.com/lobsangshakya/CSV_DB_API",
     tech: ["Python", "FastAPI", "SQLAlchemy", "SQLite"]
+  }
 ];
 
 const socialLinks = [
@@ -387,20 +388,7 @@ export const App: React.FC = () => {
     document.body.className = isDarkMode ? "dark-mode" : "light-mode";
   }, [isDarkMode]);
 
-  useEffect(() => {
-    if (currentSection === "loading") return;
 
-    const cursorDot = document.getElementById("cursor-dot");
-    if (!cursorDot) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      cursorDot.style.left = `${e.clientX}px`;
-      cursorDot.style.top = `${e.clientY}px`;
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => document.removeEventListener("mousemove", handleMouseMove);
-  }, [currentSection]);
   
   // Scroll animation effect
   useEffect(() => {
@@ -452,7 +440,6 @@ export const App: React.FC = () => {
       ) : (
         <>
           <div className="aurora-background"></div>
-          <div id="cursor-dot"></div>
           <div className={`warp-transition ${showTransition ? "active" : ""}`}></div>
           
           {/* Scroll progress bar */}
