@@ -295,7 +295,7 @@ main {
 .dark-mode .nav-logo { color: var(--text-dark); }
 
 .navbar-links { display: flex; gap: 2rem; }
-.navbar-links a {
+.navbar-links a { 
   text-decoration: none; 
   font-weight: 400; 
   font-size: 1rem; 
@@ -607,7 +607,7 @@ main {
   width: 0;
   height: 3px;
   background-color: currentColor;
-  transition: all 0.3s ease;
+  transition: width 0.3s ease;
   transform: translateX(-50%);
 }
 .social-links a:hover::after {
@@ -711,10 +711,6 @@ main {
 }
 
 @media (max-width: 480px) {
-  .project-grid { 
-    grid-template-columns: 1fr;
-  }
-}media (max-width: 480px) {
   .project-grid { 
     grid-template-columns: 1fr;
   }

@@ -664,8 +664,6 @@ export const App: React.FC = () => {
       container.setAttribute('data-scroll-progress', latest.toString());
     }
   });
-  
-
 
   const renderSection = () => {
     switch(currentSection) {
@@ -741,4 +739,4 @@ export const App: React.FC = () => {
   );
 };
 
-// export default App;
+export default App;
