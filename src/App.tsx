@@ -38,10 +38,10 @@ const projectData = [
     tech: ["HTML", "CSS", "JavaScript", "Django", "Python"]
   },
   {
-    title: "CSV_DB_API",
-    description: "A beginner‑friendly API to import and serve CSV data, built with FastAPI and SQLAlchemy for easy CRUD operations via REST endpoints.",
-    repoUrl: "https://github.com/lobsangshakya/CSV_DB_API",
-    tech: ["Python", "FastAPI", "SQLAlchemy", "Uvicorn"]
+    title: "Project Zinova",
+    description: "Zinova uses AI and blockchain to connect farmers, restaurants, and NGOs, redistributing surplus food efficiently to fight waste and hunger.",
+    repoUrl: "https://github.com/lobsangshakya/Project-Zinova",
+    tech: ["React", "Microsoft Azure", "Node.js", "AI"]
   },
 ];
 
@@ -198,7 +198,8 @@ const About: React.FC<SectionProps> = ({ setCurrentSection }) => (
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6 }}
       >
-        I am Lobsang Tsetan Shakya, a Full-Stack Developer and Data Science enthusiast. With experience as a Data Science Intern at MMC Convert and as a Technical Member at ANOVA Club, I am passionate about creating innovative, data-driven solutions that drive impact.
+        I'm Lobsang Tsetan Shakya, a Full-Stack Developer and Data Science
+        Enthusiast. With experience as a Data Science Intern at MMC Convert and Coordinator at ANOVA Club, I am passionate about building innovative, data-driven solutions that make an impact.
       </motion.p>
       <motion.button 
         className="btn" 
