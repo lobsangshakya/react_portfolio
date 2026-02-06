@@ -665,10 +665,7 @@ export const App: React.FC = () => {
     }
   });
   
-  // Create a smoothed version of the scroll progress
-  const smoothProgress = useTransform(scrollYProgress, [0, 1], [0, 1], { 
-    ease: [0.22, 0.61, 0.36, 1] // Custom easing for smoother animation
-  });
+
 
   const renderSection = () => {
     switch(currentSection) {
@@ -744,4 +741,4 @@ export const App: React.FC = () => {
   );
 };
 
-export default App;
+// export default App;
